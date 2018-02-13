@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: head('Support')">
+    <meta charset="UTF-8" />
+    <title>Support</title>
+</head>
+<body>
+    <h1 style="text-align: center">Support</h1>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="firstname">First Name: </label>
+                <input class="form-control" name="firstname" id="firstname"/>
+
+                <label for="lastname">Last Name: </label>
+                <input class="form-control" name="lastname" id="lastname"/>
+
+                <label for="email">Email: </label>
+                <input class="form-control" name="email" id="email"/>
+
+                <label for="subject">Subject: </label>
+                <input class="form-control" name="subject" id="subject"/>
+
+                <br/>
+
+                <label for="priority">Priority Level: </label>
+                <select name="priority" id="priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+
+                <br />
+
+                <label for="description">Description of Issue: </label>
+                <textarea class="form-control" name="description" id="description">
+                </textarea>
+            </div>
+        </form>
+    </div>
+</body>
+<footer th:replace="/fragments/footer :: main-footer"></footer>
+</html>
