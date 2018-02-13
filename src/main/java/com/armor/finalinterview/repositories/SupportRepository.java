@@ -1,8 +1,8 @@
 package com.armor.finalinterview.repositories;
 
-import com.armor.finalinterview.models.SupportUser;
+import com.armor.finalinterview.models.SupportTicket;
 import org.springframework.data.repository.CrudRepository;
 
-public interface SupportRepository extends CrudRepository<SupportUser, Long>{
+public interface SupportRepository extends CrudRepository<SupportTicket, Long>{
 
 }

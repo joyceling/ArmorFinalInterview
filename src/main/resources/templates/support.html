@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: head('Support')">
+    <meta charset="UTF-8" />
+    <title>Support</title>
+</head>
+<body>
+    <h1 style="text-align: center">Support</h1>
+    <div class="container">
+        <form action="/support/create" method="post" th:object="${supportTicket}">
+            <div class="form-group">
+                <label for="firstname">First Name: </label>
+                <input class="form-control" th:field="*{firstName}" id="firstname"/>
+
+                <label for="lastname">Last Name: </label>
+                <input class="form-control" th:field="*{lastName}" id="lastname"/>
+
+                <label for="email">Email: </label>
+                <input class="form-control" th:field="*{email}" id="email"/>
+
+                <label for="subject">Subject: </label>
+                <input class="form-control" th:field="*{subject}" id="subject"/>
+
+                <br/>
+
+                <label for="priority">Priority Level: </label>
+                <select id="priority" th:field="*{priority}">
+                    <option th:each="priority : ${T(com.armor.finalinterview.Priority).values()}"
+                            th:value="${priority}"
+                            th:text="${priority}">
+                    </option>
+                </select>
+
+                <br />
+
+                <label for="description">Description of Issue: </label>
+                <textarea class="form-control" th:field="*{description}" id="description">
+                </textarea>
+
+                <!--               -->
+                <!-- HIDDEN INPUTS -->
+                <!--               -->
+
+                <!--<label for="id">Current Date: </label>-->
+                <!--<input th:field="${id}" id="id" />-->
+
+                <!--<label for="responseTime">Response Time: </label>-->
+                <!--<input th:field="${responseTimeAlert}" id="responseTime"/>-->
+
+
+                <div class="text-center">
+                    <input
+                            style="margin: 20px;
+                            background-color: #43D3DF;
+                            color: white;
+                            border-radius:0"
+                            class="btn"
+                            type="submit"
+                            value="Submit"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<footer th:replace="/fragments/footer :: main-footer"></footer>
+</html>
