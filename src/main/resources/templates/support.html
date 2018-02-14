@@ -7,7 +7,7 @@
 <body>
     <h1 style="text-align: center">Support</h1>
     <div class="container">
-        <form action="/support/create" method="post" th:object="${supportTicket}">
+        <form th:action="@{/support/create}" th:method="post" th:object="${supportTicket}">
             <div class="form-group">
                 <label for="firstname">First Name: </label>
                 <input class="form-control" th:field="*{firstName}" id="firstname"/>
@@ -41,8 +41,8 @@
                 <!-- HIDDEN INPUTS -->
                 <!--               -->
 
-                <!--<label for="id">Current Date: </label>-->
-                <!--<input th:field="${id}" id="id" />-->
+                <!--<label for="date">Current Date: </label>-->
+                <!--<input th:value="${timestamp}" th:field="${date}" id="date" />-->
 
                 <!--<label for="responseTime">Response Time: </label>-->
                 <!--<input th:field="${responseTimeAlert}" id="responseTime"/>-->

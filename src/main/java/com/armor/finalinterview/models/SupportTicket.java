@@ -4,8 +4,6 @@ import com.armor.finalinterview.Priority;
 import com.armor.finalinterview.Status;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Date;
 
 @Entity
 @Table(name="support")
@@ -13,9 +11,8 @@ public class SupportTicket {
     @Id @GeneratedValue
     private long id;
 
-    @Column(name = "DATETIME_FIELD")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+//    @Column(nullable = false)
+//    private Date date;
 
     @Column(nullable = false, length = 100)
     private String firstName;
@@ -38,8 +35,8 @@ public class SupportTicket {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column
-    private String responseTimeAlert;
+//    @Column (nullable = true)
+//    private String responseTimeAlert;
 
     public SupportTicket () {
         this.status = Status.NEW;
@@ -85,13 +82,13 @@ public class SupportTicket {
         return description;
     }
 
-    public Date getDatetimeField() {
-        return date;
-    }
-
-    public void setDatetimeField(Date datetimeField) {
-        this.date = datetimeField;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date datetimeField) {
+//        this.date = datetimeField;
+//    }
 
     public Status getStatus() {
         return status;
@@ -101,13 +98,13 @@ public class SupportTicket {
         this.status = status;
     }
 
-    public void setResponseTimeAlert(String responseTimeAlert) {
-        this.responseTimeAlert = responseTimeAlert;
-    }
-
-    public String getResponseTimeAlert() {
-        return responseTimeAlert;
-    }
+//    public void setResponseTimeAlert(String responseTimeAlert) {
+//        this.responseTimeAlert = responseTimeAlert;
+//    }
+//
+//    public String getResponseTimeAlert() {
+//        return responseTimeAlert;
+//    }
 
     public Priority getPriority() {
         return priority;
