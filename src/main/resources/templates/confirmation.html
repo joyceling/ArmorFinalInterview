@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: head('Form Submitted')">
+    <meta charset="UTF-8" />
+    <title>Support</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Congratulations! Your form was submitted successfully.</h1>
+        <h2>Expect a response within x hours.</h2>
+
+        <a class="btn btn-primary" th:href="@{/support}">Submit another ticket</a>
+
+    </div>
+</body>
+<footer th:replace="/fragments/footer :: main-footer"></footer>
+</html>

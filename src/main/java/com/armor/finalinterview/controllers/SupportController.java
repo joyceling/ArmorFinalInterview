@@ -43,7 +43,13 @@ public class SupportController {
 
         supportDao.save(supportTicket);
 
-        return "redirect:/support";
+        return "redirect:/support/submitted";
+    }
+
+    @GetMapping("/support/submitted")
+    public String getSupportSubmitted () {
+
+        return "confirmation";
     }
 
 }
