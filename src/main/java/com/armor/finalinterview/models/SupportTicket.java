@@ -2,8 +2,11 @@ package com.armor.finalinterview.models;
 
 import com.armor.finalinterview.Priority;
 import com.armor.finalinterview.Status;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="support")
@@ -14,18 +17,24 @@ public class SupportTicket {
 //    @Column(nullable = false)
 //    private Date date;
 
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String firstName;
 
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String lastName;
 
+    @Email (message="Email must match the following format: youremail@website.com.")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address.")
     @Column(nullable = false, length = 100)
     private String email;
 
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String subject;
 
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 5000)
     private String description;
 

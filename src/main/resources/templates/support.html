@@ -11,15 +11,35 @@
             <div class="form-group">
                 <label for="firstname">First Name: </label>
                 <input class="form-control" th:field="*{firstName}" id="firstname"/>
+                <div
+                        class="alert alert-danger"
+                        th:if="${#fields.hasErrors('firstName')}"
+                        th:errors="*{firstName}" >
+                </div>
 
                 <label for="lastname">Last Name: </label>
                 <input class="form-control" th:field="*{lastName}" id="lastname"/>
+                <div
+                        class="alert alert-danger"
+                        th:if="${#fields.hasErrors('lastName')}"
+                        th:errors="*{lastName}" >
+                </div>
 
                 <label for="email">Email: </label>
                 <input class="form-control" th:field="*{email}" id="email"/>
+                <div
+                        class="alert alert-danger"
+                        th:if="${#fields.hasErrors('email')}"
+                        th:errors="*{email}" >
+                </div>
 
                 <label for="subject">Subject: </label>
                 <input class="form-control" th:field="*{subject}" id="subject"/>
+                <div
+                        class="alert alert-danger"
+                        th:if="${#fields.hasErrors('subject')}"
+                        th:errors="*{subject}" >
+                </div>
 
                 <br/>
 
@@ -36,6 +56,11 @@
                 <label for="description">Description of Issue: </label>
                 <textarea class="form-control" th:field="*{description}" id="description">
                 </textarea>
+                <div
+                        class="alert alert-danger"
+                        th:if="${#fields.hasErrors('description')}"
+                        th:errors="*{description}" >
+                </div>
 
                 <!--               -->
                 <!-- HIDDEN INPUTS -->
