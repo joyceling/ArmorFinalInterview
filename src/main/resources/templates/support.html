@@ -8,7 +8,6 @@
     <h1 style="text-align: center">Support</h1>
     <div class="container">
         <form th:action="@{/support/create}" th:method="post" th:object="${supportTicket}">
-            <div class="form-group">
                 <label for="firstname">First Name: </label>
                 <input class="form-control" th:field="*{firstName}" id="firstname"/>
                 <div
@@ -66,9 +65,6 @@
                 <!-- HIDDEN INPUTS -->
                 <!--               -->
 
-                <!--<label for="date">Current Date: </label>-->
-                <!--<input th:value="${timestamp}" th:field="${date}" id="date" />-->
-
                 <!--<label for="responseTime">Response Time: </label>-->
                 <!--<input th:field="${responseTimeAlert}" id="responseTime"/>-->
 
@@ -84,7 +80,6 @@
                             value="Submit"/>
                     <a class="btn btn-primary" th:href="@{/}">Cancel</a>
                 </div>
-            </div>
         </form>
     </div>
 </body>

@@ -2,11 +2,15 @@ package com.armor.finalinterview.models;
 
 import com.armor.finalinterview.Priority;
 import com.armor.finalinterview.Status;
+import org.apache.tomcat.jni.Local;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="support")
@@ -14,8 +18,8 @@ public class SupportTicket {
     @Id @GeneratedValue
     private long id;
 
-//    @Column(nullable = false)
-//    private Date date;
+    @Column(name = "date")
+    private Date date = new Date();
 
     @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
@@ -95,13 +99,13 @@ public class SupportTicket {
         return description;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date datetimeField) {
-//        this.date = datetimeField;
-//    }
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate (Date datetimeField) {
+        this.date = datetimeField;
+    }
 
     public Status getStatus() {
         return status;

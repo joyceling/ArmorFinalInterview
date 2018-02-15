@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class SupportController {
@@ -33,13 +36,6 @@ public class SupportController {
         viewModel.addAttribute("supportTicket", new SupportTicket());
         viewModel.addAttribute("priorityEnum", Priority.values());
 
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date now = calendar.getTime();
-        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-        System.out.println(currentTimestamp);
-
-        viewModel.addAttribute("timestamp", currentTimestamp);
-
         return "support";
     }
 
@@ -56,6 +52,8 @@ public class SupportController {
             model.addAttribute("supportTicket", supportTicket);
             return "support";
         }
+
+
 
         supportDao.save(supportTicket);
 
