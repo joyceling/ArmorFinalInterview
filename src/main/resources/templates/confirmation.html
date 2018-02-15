@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <h1>Congratulations! Your form was submitted successfully.</h1>
-        <h2>Expect a response within x hours.</h2>
+        <h2>Expect a response within <span th:text="${hours}"></span> hours.</h2>
 
         <a class="btn btn-primary" th:href="@{/support}">Submit another ticket</a>
 

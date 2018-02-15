@@ -51,6 +51,10 @@ public class SupportTicket {
         this.status = Status.NEW;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
