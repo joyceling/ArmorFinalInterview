@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -48,8 +47,8 @@ public class SupportTicket {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-//    @Column (nullable = true)
-//    private String responseTimeAlert;
+    @Column
+    private Date responseTimeAlert;
 
     public SupportTicket () {
         this.status = Status.NEW;
@@ -103,8 +102,8 @@ public class SupportTicket {
         return date;
     }
 
-    public void setDate (Date datetimeField) {
-        this.date = datetimeField;
+    public void setDate (Date date) {
+        this.date = date;
     }
 
     public Status getStatus() {
@@ -115,13 +114,13 @@ public class SupportTicket {
         this.status = status;
     }
 
-//    public void setResponseTimeAlert(String responseTimeAlert) {
-//        this.responseTimeAlert = responseTimeAlert;
-//    }
-//
-//    public String getResponseTimeAlert() {
-//        return responseTimeAlert;
-//    }
+    public void setResponseTimeAlert(Date responseTimeAlert) {
+        this.responseTimeAlert = responseTimeAlert;
+    }
+
+    public Date getResponseTimeAlert() {
+        return responseTimeAlert;
+    }
 
     public Priority getPriority() {
         return priority;
