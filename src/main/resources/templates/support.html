@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/header :: head('Support')">
+<head th:replace="/fragments/header :: head('Support','/support.css','/shared.css')">
     <meta charset="UTF-8" />
     <title>Support</title>
 </head>
 <body>
     <h1 style="text-align: center">Support</h1>
-    <div class="container">
-        <form th:action="@{/support/create}" th:method="post" th:object="${supportTicket}">
-                <label for="firstname">First Name: </label>
-                <input class="form-control" th:field="*{firstName}" id="firstname"/>
-                <div
-                        class="alert alert-danger"
-                        th:if="${#fields.hasErrors('firstName')}"
-                        th:errors="*{firstName}" >
+    <div class="container" style="height:">
+        <form style="width:70%" th:action="@{/support/create}" th:method="post" th:object="${supportTicket}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="firstname">FIRST NAME: <span class="asterisk">*</span></label>
+                        <input class="form-control" th:field="*{firstName}" id="firstname"/>
+                        <div
+                                class="alert alert-danger"
+                                th:if="${#fields.hasErrors('firstName')}"
+                                th:errors="*{firstName}" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastname">LAST NAME: <span class="asterisk">*</span></label>
+                        <input class="form-control" th:field="*{lastName}" id="lastname"/>
+                        <div
+                                class="alert alert-danger"
+                                th:if="${#fields.hasErrors('lastName')}"
+                                th:errors="*{lastName}" >
+                        </div>
+                    </div>
                 </div>
-
-                <label for="lastname">Last Name: </label>
-                <input class="form-control" th:field="*{lastName}" id="lastname"/>
-                <div
-                        class="alert alert-danger"
-                        th:if="${#fields.hasErrors('lastName')}"
-                        th:errors="*{lastName}" >
-                </div>
-
-                <label for="email">Email: </label>
+                <label for="email">EMAIL: <span class="asterisk">*</span></label>
                 <input class="form-control" th:field="*{email}" id="email"/>
                 <div
                         class="alert alert-danger"
                         th:if="${#fields.hasErrors('email')}"
                         th:errors="*{email}" >
                 </div>
-
-                <label for="subject">Subject: </label>
+                <label for="subject">SUBJECT: <span class="asterisk">*</span></label>
                 <input class="form-control" th:field="*{subject}" id="subject"/>
                 <div
                         class="alert alert-danger"
@@ -42,7 +45,7 @@
 
                 <br/>
 
-                <label for="priority">Priority Level: </label>
+                <label for="priority">PRIORITY: </label>
                 <select id="priority" th:field="*{priority}">
                     <option th:each="priority : ${T(com.armor.finalinterview.Priority).values()}"
                             th:value="${priority}"
@@ -52,7 +55,7 @@
 
                 <br />
 
-                <label for="description">Description of Issue: </label>
+                <label for="description">MESSAGE: <span class="asterisk">*</span></label>
                 <textarea class="form-control" th:field="*{description}" id="description">
                 </textarea>
                 <div
@@ -61,12 +64,8 @@
                         th:errors="*{description}" >
                 </div>
 
-                <div class="text-center">
+                <div class="text-right">
                     <input
-                            style="margin: 20px;
-                            background-color: #43D3DF;
-                            color: white;
-                            border-radius:0"
                             class="btn"
                             type="submit"
                             value="Submit"/>

@@ -25,8 +25,8 @@ public class SupportTicket {
     @Column(nullable = false, length = 100)
     private String lastName;
 
-    @Email (message="Email must match the following format: youremail@website.com.")
-    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address.")
+    @Email (message="Format must be: example@yourdomain.com.")
+    @Pattern(regexp=".+@.+\\..+", message="Must be valid email.")
     @Column(nullable = false, length = 100)
     private String email;
 
