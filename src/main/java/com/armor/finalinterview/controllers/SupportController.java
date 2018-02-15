@@ -4,21 +4,15 @@ import com.armor.finalinterview.LocalDateTimeAttributeConverter;
 import com.armor.finalinterview.Priority;
 import com.armor.finalinterview.models.SupportTicket;
 import com.armor.finalinterview.repositories.SupportRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 
 @Controller
@@ -91,9 +85,9 @@ public class SupportController {
         // convert Date to LocalDateTime
         LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
         LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
-        // add the appropriate number of hours
+        // add the appropriate number of hours using built in LocalDateTime method
         LocalDateTime newDateTime = localDateTime.plusHours(hours);
-        // convert localdate back to date
+        // convert localdate back to date via timestamp
         Date date = new Date (converter.convertToDatabaseColumn(newDateTime).getTime());
         // save response time (current time + response time) to current support ticket
         supportTicket.setResponseTimeAlert(date);
