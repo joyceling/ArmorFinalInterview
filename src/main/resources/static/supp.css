@@ -1,0 +1,87 @@
+h1 {
+    font-family: 'Yantramanav', sans-serif;
+    font-size: 75px;
+    color: white;
+    font-weight: 700;
+}
+
+h4 {
+    color: #D8F9B7;
+    font-weight: 800;
+}
+
+h1, h4 {
+    text-align: left;
+    text-shadow: 2px 2px 4px #484848
+}
+
+.heading {
+    text-align: center;
+    position: absolute;
+    top: 21px;
+    left: 448px;
+    z-index: 1000;
+    font-size: 75px;
+}
+
+span.asterisk {
+    color:darkred;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+form {
+    margin: 0 auto;
+    width:70%
+}
+
+input.btn, a.btn {
+    margin: 20px 0 20px 0;
+}
+
+.alert {
+    padding: 7px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    height: fit-content;
+    width: 43%;
+}
+
+.alert-danger {
+    color: white;
+    background-color: #D20C15;
+    border:none;
+}
+
+.form-control {
+    height: 28px;
+    border: 2px solid #e0e0e0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    border-radius: 0;
+}
+
+.form-control:focus {
+    border: 2px solid #e6e5e5;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.banner-container {
+    overflow: auto;
+    overflow-y: hidden;
+    height: 220px;
+    margin-bottom: 30px;
+}
+
+img {
+    width:100%;
+}
+

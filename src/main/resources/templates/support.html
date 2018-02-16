@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/header :: head('Support','/support.css','/shared.css')">
+<head th:replace="/fragments/header :: head('Contact Armor','supp.css','shared.css')">
     <meta charset="UTF-8" />
     <title>Support</title>
 </head>
 <body>
-    <h1 style="text-align: center">Support</h1>
-    <div class="container" style="height:">
-        <form style="width:70%" th:action="@{/support/create}" th:method="post" th:object="${supportTicket}">
+    <div class="banner-container">
+        <img src="/banner.png"/>
+    </div>
+    <div class="heading">
+        <h1>Contact Us</h1>
+        <h4>WE'RE HERE TO HELP</h4>
+    </div>
+    <div class="container">
+        <form th:action="@{/support}" th:method="post" th:object="${supportTicket}">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="firstname">FIRST NAME: <span class="asterisk">*</span></label>
@@ -56,7 +62,7 @@
                 <br />
 
                 <label for="description">MESSAGE: <span class="asterisk">*</span></label>
-                <textarea class="form-control" th:field="*{description}" id="description">
+                <textarea rows="6" class="form-control" th:field="*{description}" id="description">
                 </textarea>
                 <div
                         class="alert alert-danger"

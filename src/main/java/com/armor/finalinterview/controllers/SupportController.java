@@ -37,7 +37,7 @@ public class SupportController {
         return "support";
     }
 
-    @PostMapping("/support/create")
+    @PostMapping("/support")
     public String postSupportForm (
             @Valid SupportTicket supportTicket,
             Errors validation,
@@ -50,7 +50,6 @@ public class SupportController {
             model.addAttribute("supportTicket", supportTicket);
             return "support";
         }
-
 
 
         supportDao.save(supportTicket);

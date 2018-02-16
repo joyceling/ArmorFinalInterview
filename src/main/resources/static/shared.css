@@ -1,11 +1,10 @@
-body {
+body, h4 {
     font-family: 'Abel', sans-serif;
 }
 
 
 /*BUTTONS*/
 input.btn, a.btn {
-    margin: 20px;
     background-color: #43D3DF;
     color: white;
     border-radius: 0;
@@ -22,46 +21,4 @@ input.btn:hover, a.btn:hover {
     background-color: #3cb3bf;
     color:white;
 }
-
-/*ASTERISK*/
-span.asterisk {
-    color:darkred;
-    font-weight: bolder;
-    font-size: 14px;
-}
-
-.alert {
-    padding: 7px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 0;
-    height: fit-content;
-    width: 43%;
-}
-
-.alert-danger {
-    color: white;
-    background-color: #D20C15;
-    border:none;
-}
-
-.form-control {
-    height: 28px;
-    border: 2px solid #e6e5e5;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-     -webkit-transition: none;
-    -o-transition: none;
-     transition: none;
-    border-radius: 0;
-}
-
-.form-control:focus {
-    border: 2px solid #e6e5e5;
-    outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 
