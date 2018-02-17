@@ -60,38 +60,57 @@ public class SupportController {
 
     @GetMapping("/support/submitted/{id}")
     public String getSupportSubmitted (@PathVariable long id, Model model) {
-
         SupportTicket supportTicket = supportDao.findOne(id);
-        Priority priority = supportTicket.getPriority();
 
-        // check to see what priority this ticket has and assign appropriate number of hours
-        int hours = 0;
-        switch (priority.toString()) {
-            case "LOW":
-                hours = 48;
-                break;
-            case "MEDIUM":
-                hours = 24;
-                break;
-            case "HIGH":
-                hours = 4;
-                break;
+        try {
+
+            Priority priority = supportTicket.getPriority();
+
+            // check to see what priority this ticket has and assign appropriate number of hours
+            int hours = 0;
+            switch (priority.toString()) {
+                case "LOW":
+                    hours = 48;
+                    break;
+                case "MEDIUM":
+                    hours = 24;
+                    break;
+                case "HIGH":
+                    hours = 4;
+                    break;
+                default:
+                    hours = 0;
+            }
+            // pass hours to the view
+            model.addAttribute("hours", hours);
+
+            // convert Date to LocalDateTime
+            LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
+            LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
+            // add the appropriate number of hours using built in LocalDateTime method
+            LocalDateTime newDateTime = localDateTime.plusHours(hours);
+            // convert localdate back to date via timestamp
+            Date date = new Date (converter.convertToDatabaseColumn(newDateTime).getTime());
+            // save response time (current time + response time) to current support ticket
+            supportTicket.setResponseTimeAlert(date);
+
+            // save support ticket to database
+            supportDao.save(supportTicket);
+
+        } catch (NullPointerException e) {
+
+            int hours = 0;
+            // pass hours to the view
+            model.addAttribute("hours", hours);
+
+            System.out.println("The user did not specify a priority.");
+
         }
 
-        // pass hours to the view
-        model.addAttribute("hours", hours);
 
-        // convert Date to LocalDateTime
-        LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
-        LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
-        // add the appropriate number of hours using built in LocalDateTime method
-        LocalDateTime newDateTime = localDateTime.plusHours(hours);
-        // convert localdate back to date via timestamp
-        Date date = new Date (converter.convertToDatabaseColumn(newDateTime).getTime());
-        // save response time (current time + response time) to current support ticket
-        supportTicket.setResponseTimeAlert(date);
-        // save support ticket to database
-        supportDao.save(supportTicket);
+
+
+
 
         return "confirmation";
     }

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -17,23 +18,28 @@ public class SupportTicket {
     @Column(name = "date")
     private Date date = new Date();
 
+    @Size(max = 100, message = "This field must be less than 100 characters.")
     @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String firstName;
 
+    @Size(max = 100, message = "This field must be less than 100 characters.")
     @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String lastName;
 
+    @Size(max = 100, message = "This field must be less than 100 characters.")
     @Email (message="Format must be: example@yourdomain.com.")
     @Pattern(regexp=".+@.+\\..+", message="Must be valid email.")
     @Column(nullable = false, length = 100)
     private String email;
 
+    @Size(max = 100, message = "This field must be less than 100 characters.")
     @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String subject;
 
+    @Size(max = 100, message = "This field must be less than 5000 characters.")
     @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 5000)
     private String description;

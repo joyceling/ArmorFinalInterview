@@ -51,13 +51,19 @@
 
                 <br/>
 
-                <label for="priority">PRIORITY: </label>
-                <select id="priority" th:field="*{priority}">
-                    <option th:each="priority : ${T(com.armor.finalinterview.Priority).values()}"
-                            th:value="${priority}"
-                            th:text="${priority}">
-                    </option>
-                </select>
+                <!--// click this to toggle the dropdown for priority-->
+                <label for="prioritylevel">Select a priority level</label>
+                <input id="prioritylevel" type="checkbox" />
+
+                <div class="priorityDiv" style="display:none">
+                    <label for="priority">PRIORITY: </label>
+                    <select id="priority">
+                        <option th:each="priority : ${T(com.armor.finalinterview.Priority).values()}"
+                                th:value="${priority}"
+                                th:text="${priority}">
+                        </option>
+                    </select>
+                </div>
 
                 <br />
 
@@ -79,6 +85,27 @@
                 </div>
         </form>
     </div>
-</body>
 <footer th:replace="/fragments/footer :: main-footer"></footer>
+<script>
+    $(document).ready(function() {
+
+        // check if the checkbox is checked (say that five times fast!!)
+        $("#prioritylevel").click(function () {
+            var isItChecked = $('#prioritylevel').prop('checked');
+
+            if (isItChecked) {
+                console.log("It's checked!");
+                $(".priorityDiv").show();
+                $("#priority").attr('th:field','*{priority}');
+
+            } else {
+                console.log("It's not checked!");
+                $(".priorityDiv").hide();
+                $("#priority").removeAttr('th:field');
+
+            }
+        });
+    });
+</script>
+</body>
 </html>
