@@ -4,10 +4,13 @@ import com.armor.finalinterview.LocalDateTimeAttributeConverter;
 import com.armor.finalinterview.Priority;
 import com.armor.finalinterview.models.SupportTicket;
 import com.armor.finalinterview.repositories.SupportRepository;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
@@ -19,8 +22,17 @@ import java.util.Date;
 public class SupportController {
     private final SupportRepository supportDao;
 
+    // constructor
     public SupportController (SupportRepository supportDao) {
         this.supportDao = supportDao;
+    }
+
+    // ensure that all strings received from form are trimmed for whitespace
+    @InitBinder
+    public void initBinder ( WebDataBinder binder )
+    {
+        StringTrimmerEditor stringtrimmer = new StringTrimmerEditor(true);
+        binder.registerCustomEditor(String.class, stringtrimmer);
     }
 
     @GetMapping("/")
@@ -51,6 +63,8 @@ public class SupportController {
             return "support";
         }
 
+        System.out.println(supportTicket.getFirstName());
+        System.out.println(supportTicket.getLastName());
 
         supportDao.save(supportTicket);
 
