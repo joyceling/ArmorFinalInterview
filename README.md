@@ -5,7 +5,11 @@
 In order to run this application, create an 'application.properties' file:
 
 Run in terminal:
+
+```
 cp src/main/resources/example.properties src/main/resources/application.properties
+
+```
 
 ### User Story: As a Customer, I want to submit a ticket so that I can get assistance from Support.
 
