@@ -1,7 +1,7 @@
 package com.armor.finalinterview.controllers;
 
 import com.armor.finalinterview.LocalDateTimeAttributeConverter;
-import com.armor.finalinterview.Priority;
+import com.armor.finalinterview.models.Priority;
 import com.armor.finalinterview.models.SupportTicket;
 import com.armor.finalinterview.repositories.SupportRepository;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;

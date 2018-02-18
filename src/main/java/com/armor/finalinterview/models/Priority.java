@@ -1,4 +1,4 @@
-package com.armor.finalinterview;
+package com.armor.finalinterview.models;
 
 public enum Priority {
     LOW,

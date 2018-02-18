@@ -1,7 +1,5 @@
 package com.armor.finalinterview.models;
 
-import com.armor.finalinterview.Priority;
-import com.armor.finalinterview.Status;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
