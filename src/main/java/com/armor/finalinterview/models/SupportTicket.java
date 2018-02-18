@@ -2,22 +2,24 @@ package com.armor.finalinterview.models;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="support")
+@Table(name = "support")
 public class SupportTicket {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
 
     @Column(name = "date")
     private Date date = new Date();
 
     @Size(max = 100, message = "This field must be less than 100 characters.")
-    @NotBlank(message = "This field cannot be blank.")
+    @NotBlank
     @Column(nullable = false, length = 100)
     private String firstName;
 
@@ -26,9 +28,9 @@ public class SupportTicket {
     @Column(nullable = false, length = 100)
     private String lastName;
 
-    @Size(max = 100, message = "This field must be less than 100 characters.")
-    @Email (message="Format must be: example@yourdomain.com.")
-    @Pattern(regexp=".+@.+\\..+", message="Must be valid email.")
+    @Email(message = "Format must be: example@yourdomain.com.")
+    @Pattern(regexp = ".+@.+\\..+", message = "Must be valid email.")
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String email;
 
@@ -43,6 +45,7 @@ public class SupportTicket {
     private String description;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Priority priority;
 
     @Enumerated(EnumType.STRING)
@@ -51,7 +54,7 @@ public class SupportTicket {
     @Column
     private Date responseTimeAlert;
 
-    public SupportTicket () {
+    public SupportTicket() {
         this.status = Status.NEW;
     }
 
@@ -103,7 +106,7 @@ public class SupportTicket {
         return date;
     }
 
-    public void setDate (Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

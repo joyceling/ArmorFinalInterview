@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -23,25 +24,24 @@ public class SupportController {
     private final SupportRepository supportDao;
 
     // constructor
-    public SupportController (SupportRepository supportDao) {
+    public SupportController(SupportRepository supportDao) {
         this.supportDao = supportDao;
     }
 
     // ensure that all strings received from form are trimmed for whitespace
     @InitBinder
-    public void initBinder ( WebDataBinder binder )
-    {
+    public void initBinder(WebDataBinder binder) {
         StringTrimmerEditor stringtrimmer = new StringTrimmerEditor(true);
         binder.registerCustomEditor(String.class, stringtrimmer);
     }
 
     @GetMapping("/")
-    public String landing () {
+    public String landing() {
         return "landing";
     }
 
     @GetMapping("/support")
-    public String getSupportForm (Model viewModel) {
+    public String getSupportForm(Model viewModel) {
         // pass to the view
         viewModel.addAttribute("supportTicket", new SupportTicket());
         viewModel.addAttribute("priorityEnum", Priority.values());
@@ -50,7 +50,7 @@ public class SupportController {
     }
 
     @PostMapping("/support")
-    public String postSupportForm (
+    public String postSupportForm(
             @Valid SupportTicket supportTicket,
             Errors validation,
             Model model
@@ -73,7 +73,7 @@ public class SupportController {
     }
 
     @GetMapping("/support/submitted/{id}")
-    public String getSupportSubmitted (@PathVariable long id, Model model) {
+    public String getSupportSubmitted(@PathVariable long id, Model model) {
         SupportTicket supportTicket = supportDao.findOne(id);
 
         try {
@@ -81,8 +81,12 @@ public class SupportController {
             Priority priority = supportTicket.getPriority();
 
             // check to see what priority this ticket has and assign appropriate number of hours
+            System.out.println(priority.toString());
             int hours = 0;
             switch (priority.toString()) {
+                case "NONE":
+                    hours = 0;
+                    break;
                 case "LOW":
                     hours = 48;
                     break;
@@ -104,7 +108,7 @@ public class SupportController {
             // add the appropriate number of hours using built in LocalDateTime method
             LocalDateTime newDateTime = localDateTime.plusHours(hours);
             // convert localdate back to date via timestamp
-            Date date = new Date (converter.convertToDatabaseColumn(newDateTime).getTime());
+            Date date = new Date(converter.convertToDatabaseColumn(newDateTime).getTime());
             // save response time (current time + response time) to current support ticket
             supportTicket.setResponseTimeAlert(date);
 
@@ -120,10 +124,6 @@ public class SupportController {
             System.out.println("The user did not specify a priority.");
 
         }
-
-
-
-
 
 
         return "confirmation";

@@ -25,14 +25,14 @@ h1, h4 {
 }
 
 span.asterisk {
-    color:darkred;
+    color: darkred;
     font-weight: bolder;
     font-size: 14px;
 }
 
 form {
     margin: 0 auto;
-    width:70%
+    width: 70%
 }
 
 input.btn, a.btn {
@@ -52,7 +52,7 @@ input.btn, a.btn {
 .alert-danger {
     color: white;
     background-color: #D20C15;
-    border:none;
+    border: none;
 }
 
 .form-control {
@@ -73,7 +73,6 @@ input.btn, a.btn {
     box-shadow: none;
 }
 
-
 .banner-container {
     overflow: auto;
     overflow-y: hidden;
@@ -82,6 +81,6 @@ input.btn, a.btn {
 }
 
 img {
-    width:100%;
+    width: 100%;
 }
 

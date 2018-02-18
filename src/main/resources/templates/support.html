@@ -1,111 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/fragments/header :: head('Contact Armor','supp.css','shared.css')">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Support</title>
 </head>
 <body>
-    <div class="banner-container">
-        <img src="/img/banner.png"/>
-    </div>
-    <div class="heading">
-        <h1>Contact Us</h1>
-        <h4>WE'RE HERE TO HELP</h4>
-    </div>
-    <div class="container">
-        <form th:action="@{/support}" th:method="post" th:object="${supportTicket}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="firstname">FIRST NAME: <span class="asterisk">*</span></label>
-                        <input class="form-control" th:field="*{firstName}" id="firstname"/>
-                        <div
-                                class="alert alert-danger"
-                                th:if="${#fields.hasErrors('firstName')}"
-                                th:errors="*{firstName}" >
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="lastname">LAST NAME: <span class="asterisk">*</span></label>
-                        <input class="form-control" th:field="*{lastName}" id="lastname"/>
-                        <div
-                                class="alert alert-danger"
-                                th:if="${#fields.hasErrors('lastName')}"
-                                th:errors="*{lastName}" >
-                        </div>
-                    </div>
-                </div>
-                <label for="email">EMAIL: <span class="asterisk">*</span></label>
-                <input class="form-control" th:field="*{email}" id="email"/>
+<div class="banner-container">
+    <img src="/img/banner.png"/>
+</div>
+<div class="heading">
+    <h1>Contact Us</h1>
+    <h4>WE'RE HERE TO HELP</h4>
+</div>
+<div class="container">
+    <form th:action="@{/support}" th:method="post" th:object="${supportTicket}">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstname">FIRST NAME: <span class="asterisk">*</span></label>
+                <input class="form-control" th:field="*{firstName}" id="firstname"/>
                 <div
                         class="alert alert-danger"
-                        th:if="${#fields.hasErrors('email')}"
-                        th:errors="*{email}" >
+                        th:if="${#fields.hasErrors('firstName')}"
+                        th:errors="*{firstName}">
                 </div>
-                <label for="subject">SUBJECT: <span class="asterisk">*</span></label>
-                <input class="form-control" th:field="*{subject}" id="subject"/>
+            </div>
+            <div class="col-md-6">
+                <label for="lastname">LAST NAME: <span class="asterisk">*</span></label>
+                <input class="form-control" th:field="*{lastName}" id="lastname"/>
                 <div
                         class="alert alert-danger"
-                        th:if="${#fields.hasErrors('subject')}"
-                        th:errors="*{subject}" >
+                        th:if="${#fields.hasErrors('lastName')}"
+                        th:errors="*{lastName}">
                 </div>
+            </div>
+        </div>
+        <label for="email">EMAIL: <span class="asterisk">*</span></label>
+        <input class="form-control" th:field="*{email}" id="email"/>
+        <div
+                class="alert alert-danger"
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}">
+        </div>
+        <label for="subject">SUBJECT: <span class="asterisk">*</span></label>
+        <input class="form-control" th:field="*{subject}" id="subject"/>
+        <div
+                class="alert alert-danger"
+                th:if="${#fields.hasErrors('subject')}"
+                th:errors="*{subject}">
+        </div>
 
-                <br/>
+        <br/>
 
-                <!--// click this to toggle the dropdown for priority-->
-                <label for="prioritylevel">Select a priority level</label>
-                <input id="prioritylevel" type="checkbox" />
+        <!--&lt;!&ndash;// click this to toggle the dropdown for priority&ndash;&gt;-->
+        <!--<label for="prioritylevel">Select a priority level</label>-->
+        <!--<input id="prioritylevel" type="checkbox" />-->
 
-                <div class="priorityDiv" style="display:none">
-                    <label for="priority">PRIORITY: </label>
-                    <select id="priority">
-                        <option th:each="priority : ${T(com.armor.finalinterview.Priority).values()}"
-                                th:value="${priority}"
-                                th:text="${priority}">
-                        </option>
-                    </select>
-                </div>
+        <div class="priorityDiv">
+            <label for="priority">PRIORITY: </label>
+            <select id="priority" th:field="*{priority}">
+                <option th:each="priority : ${T(com.armor.finalinterview.models.Priority).values()}"
+                        th:value="${priority}"
+                        th:text="${priority}">
+                </option>
+            </select>
+        </div>
 
-                <br />
+        <br/>
 
-                <label for="description">MESSAGE: <span class="asterisk">*</span></label>
-                <textarea rows="6" class="form-control" th:field="*{description}" id="description">
+        <label for="description">MESSAGE: <span class="asterisk">*</span></label>
+        <textarea rows="6" class="form-control" th:field="*{description}" id="description">
                 </textarea>
-                <div
-                        class="alert alert-danger"
-                        th:if="${#fields.hasErrors('description')}"
-                        th:errors="*{description}" >
-                </div>
+        <div
+                class="alert alert-danger"
+                th:if="${#fields.hasErrors('description')}"
+                th:errors="*{description}">
+        </div>
 
-                <div class="text-right">
-                    <input
-                            class="btn"
-                            type="submit"
-                            value="Submit"/>
-                    <a class="btn btn-primary" th:href="@{/}">Cancel</a>
-                </div>
-        </form>
-    </div>
+        <div class="text-right">
+            <input
+                    class="btn"
+                    type="submit"
+                    value="Submit"/>
+            <a class="btn btn-primary" th:href="@{/}">Cancel</a>
+        </div>
+    </form>
+</div>
 <footer th:replace="/fragments/footer :: main-footer"></footer>
 <script>
-    $(document).ready(function() {
-
-        // check if the checkbox is checked (say that five times fast!!)
-        $("#prioritylevel").click(function () {
-            var isItChecked = $('#prioritylevel').prop('checked');
-
-            if (isItChecked) {
-                console.log("It's checked!");
-                $(".priorityDiv").show();
-                $("#priority").attr('th:field','*{priority}');
-
-            } else {
-                console.log("It's not checked!");
-                $(".priorityDiv").hide();
-                $("#priority").removeAttr('th:field');
-
-            }
-        });
-    });
+    //    $(document).ready(function() {
+    //
+    //        // check if the checkbox is checked (say that five times fast!!)
+    //        $("#prioritylevel").click(function () {
+    //            var isItChecked = $('#prioritylevel').prop('checked');
+    //
+    //            if (isItChecked) {
+    //                console.log("It's checked!");
+    //                $(".priorityDiv").show();
+    //                $("#priority").attr('th:field','*{priority}');
+    //
+    //            } else {
+    //                console.log("It's not checked!");
+    //                $(".priorityDiv").hide();
+    //                $("#priority").removeAttr('th:field');
+    //
+    //            }
+    //        });
+    //    });
 </script>
 </body>
 </html>

@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/fragments/header :: head('Form Submitted','/confirmation.css','/shared.css')">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Support</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Congratulations! Your form was submitted successfully.</h1>
+<div class="container">
+    <h1>Congratulations! Your form was submitted successfully.</h1>
 
-            <!--Only display a specific number of hours if they had chosen priority level-->
+    <!--Only display a specific number of hours if they had chosen priority level-->
 
-            <!--IF HOURS = 0, NULLPOINTEREXCEPTION WAS THROWN-->
-            <div th:if="${hours} != 0">
-                <h2>Expect a response within<span th:text="${hours}"></span>hours.</h2>
-            </div>
-            <!-- ELSE -->
-            <div th:unless="${hours} != 0">
-                <h2>You'll hear from us soon!</h2>
-            </div>
-
-        <a class="btn btn-primary" th:href="@{/support}">Submit another ticket</a>
-
+    <!--IF HOURS = 0, NULLPOINTEREXCEPTION WAS THROWN-->
+    <div th:if="${hours} != 0">
+        <h2>Expect a response within <span th:text="${hours}"></span> hours.</h2>
     </div>
+    <!-- ELSE -->
+    <div th:unless="${hours} != 0">
+        <h2>You'll hear from us soon!</h2>
+    </div>
+
+    <a class="btn btn-primary" th:href="@{/support}">Submit another ticket</a>
+
+</div>
 </body>
 <footer th:replace="/fragments/footer :: main-footer"></footer>
 </html>
