@@ -19,7 +19,7 @@ public class SupportTicket {
     private Date date = new Date();
 
     @Size(max = 100, message = "This field must be less than 100 characters.")
-    @NotBlank
+    @NotBlank(message = "This field cannot be blank.")
     @Column(nullable = false, length = 100)
     private String firstName;
 

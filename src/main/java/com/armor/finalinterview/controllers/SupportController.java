@@ -63,9 +63,6 @@ public class SupportController {
             return "support";
         }
 
-        System.out.println(supportTicket.getFirstName());
-        System.out.println(supportTicket.getLastName());
-
         supportDao.save(supportTicket);
 
 
@@ -81,11 +78,11 @@ public class SupportController {
             Priority priority = supportTicket.getPriority();
 
             // check to see what priority this ticket has and assign appropriate number of hours
-            System.out.println(priority.toString());
             int hours = 0;
             switch (priority.toString()) {
                 case "NONE":
                     hours = 0;
+                    supportTicket.setResponseTimeAlert(null);
                     break;
                 case "LOW":
                     hours = 48;
@@ -120,8 +117,6 @@ public class SupportController {
             int hours = 0;
             // pass hours to the view
             model.addAttribute("hours", hours);
-
-            System.out.println("The user did not specify a priority.");
 
         }
 
