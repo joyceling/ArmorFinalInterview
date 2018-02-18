@@ -99,15 +99,17 @@ public class SupportController {
             // pass hours to the view
             model.addAttribute("hours", hours);
 
-            // convert Date to LocalDateTime
-            LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
-            LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
-            // add the appropriate number of hours using built in LocalDateTime method
-            LocalDateTime newDateTime = localDateTime.plusHours(hours);
-            // convert localdate back to date via timestamp
-            Date date = new Date(converter.convertToDatabaseColumn(newDateTime).getTime());
-            // save response time (current time + response time) to current support ticket
-            supportTicket.setResponseTimeAlert(date);
+            if (supportTicket.getResponseTimeAlert() != null) {
+                // convert Date to LocalDateTime
+                LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
+                LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
+                // add the appropriate number of hours using built in LocalDateTime method
+                LocalDateTime newDateTime = localDateTime.plusHours(hours);
+                // convert localdate back to date via timestamp
+                Date date = new Date(converter.convertToDatabaseColumn(newDateTime).getTime());
+                // save response time (current time + response time) to current support ticket
+                supportTicket.setResponseTimeAlert(date);
+            }
 
             // save support ticket to database
             supportDao.save(supportTicket);
