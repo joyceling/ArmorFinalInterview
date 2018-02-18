@@ -41,5 +41,5 @@ cp src/main/resources/example.properties src/main/resources/application.properti
 - Given a Customer is presented with a form to submit a ticket
     - When they submit the form:
         - Notify the Customer if errors exist/occur and do not persist the ticket to the database.
-- If no errors exist, the ticket information will be stored in the database and the Customer will know when to expect a response from Support.
+    - If no errors exist, the ticket information will be stored in the database and the Customer will know when to expect a response from Support.
 
