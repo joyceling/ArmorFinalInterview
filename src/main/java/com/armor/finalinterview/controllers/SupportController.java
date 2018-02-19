@@ -1,9 +1,10 @@
 package com.armor.finalinterview.controllers;
 
-import com.armor.finalinterview.LocalDateTimeAttributeConverter;
 import com.armor.finalinterview.models.Priority;
 import com.armor.finalinterview.models.SupportTicket;
 import com.armor.finalinterview.repositories.SupportRepository;
+import com.armor.finalinterview.utilities.PriorityHoursPolicy;
+import com.armor.finalinterview.utilities.ResponseTimePolicy;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Controller
 public class SupportController {
@@ -72,56 +70,20 @@ public class SupportController {
     @GetMapping("/support/submitted/{id}")
     public String getSupportSubmitted(@PathVariable long id, Model model) {
         SupportTicket supportTicket = supportDao.findOne(id);
+        PriorityHoursPolicy priorityHoursPolicy = new PriorityHoursPolicy();
 
-        try {
+        // check to see what priority this ticket has and assign appropriate number of hours
+        int hours = priorityHoursPolicy.convertPriorityToHours(supportTicket.getPriority());
 
-            Priority priority = supportTicket.getPriority();
+        // pass hours to the view
+        model.addAttribute("hours", hours);
 
-            // check to see what priority this ticket has and assign appropriate number of hours
-            int hours = 0;
-            switch (priority.toString()) {
-                case "NONE":
-                    hours = 0;
-                    supportTicket.setResponseTimeAlert(null);
-                    break;
-                case "LOW":
-                    hours = 48;
-                    break;
-                case "MEDIUM":
-                    hours = 24;
-                    break;
-                case "HIGH":
-                    hours = 4;
-                    break;
-                default:
-                    hours = 0;
-            }
-            // pass hours to the view
-            model.addAttribute("hours", hours);
+        // update response time
+        ResponseTimePolicy responseTimePolicy = new ResponseTimePolicy();
+        SupportTicket newSupportTicket = responseTimePolicy.getResponseTime(hours, supportTicket);
 
-            if (supportTicket.getResponseTimeAlert() != null) {
-                // convert Date to LocalDateTime
-                LocalDateTimeAttributeConverter converter = new LocalDateTimeAttributeConverter();
-                LocalDateTime localDateTime = converter.convertToEntityAttribute(new Timestamp(supportTicket.getDate().getTime()));
-                // add the appropriate number of hours using built in LocalDateTime method
-                LocalDateTime newDateTime = localDateTime.plusHours(hours);
-                // convert localdate back to date via timestamp
-                Date date = new Date(converter.convertToDatabaseColumn(newDateTime).getTime());
-                // save response time (current time + response time) to current support ticket
-                supportTicket.setResponseTimeAlert(date);
-            }
-
-            // save support ticket to database
-            supportDao.save(supportTicket);
-
-        } catch (NullPointerException e) {
-
-            int hours = 0;
-            // pass hours to the view
-            model.addAttribute("hours", hours);
-
-        }
-
+        // save new support ticket to database
+        supportDao.save(newSupportTicket);
 
         return "confirmation";
     }

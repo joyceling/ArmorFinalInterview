@@ -1,4 +1,4 @@
-package com.armor.finalinterview;
+package com.armor.finalinterview.utilities;
 
 
 import javax.persistence.AttributeConverter;
