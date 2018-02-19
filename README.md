@@ -9,8 +9,11 @@ Run in terminal:
 cp src/main/resources/example.properties src/main/resources/application.properties
 
  ./mvnw spring-boot:run
+ 
 
 ```
+
+Navigate to: http://localhost:8080
 
 ## User Story: As a Customer, I want to submit a ticket so that I can get assistance from Support.
 
