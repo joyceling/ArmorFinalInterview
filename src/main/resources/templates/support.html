@@ -5,12 +5,14 @@
     <title>Support</title>
 </head>
 <body>
-<div class="banner-container">
-    <img src="/img/banner.png"/>
-</div>
-<div class="heading">
-    <h1>Contact Us</h1>
-    <h4>WE'RE HERE TO HELP</h4>
+<div class="row">
+    <div class="banner-container">
+        <img src="/img/banner.png"/>
+    </div>
+    <div class="heading">
+        <h1>Contact Us</h1>
+        <h4>WE'RE HERE TO HELP</h4>
+    </div>
 </div>
 <div class="container">
     <form th:action="@{/support}" th:method="post" th:object="${supportTicket}">

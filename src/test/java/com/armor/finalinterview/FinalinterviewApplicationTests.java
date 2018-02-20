@@ -4,14 +4,16 @@ import com.armor.finalinterview.models.Priority;
 import com.armor.finalinterview.utilities.LocalDateTimeAttributeConverter;
 import com.armor.finalinterview.utilities.PriorityHoursPolicy;
 import com.armor.finalinterview.utilities.ResponseTimePolicy;
+
 import org.junit.Test;
+import org.hamcrest.CoreMatchers.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-
+import org.hamcrest.core.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -35,7 +37,8 @@ public class FinalinterviewApplicationTests {
 
         // assert statements
         // LocalDateTime to Timestamp
-        assertEquals(date1, localDateTimeAttributeConverter.convertToDatabaseColumn(localDate1), "LocalDateTime should be converted to Timestamp");
+
+
         assertEquals(date2, localDateTimeAttributeConverter.convertToDatabaseColumn(localDate2), "LocalDateTime should be converted to Timestamp");
         assertEquals(date3, localDateTimeAttributeConverter.convertToDatabaseColumn(localDate3), "LocalDateTime should be converted to Timestamp");
 
