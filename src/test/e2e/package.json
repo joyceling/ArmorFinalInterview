@@ -1,0 +1,14 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "End to End testing for Final Interview App with Nightwatch.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joyce LIng",
+  "license": "ISC",
+  "devDependencies": {
+    "nightwatch": "^0.9.19"
+  }
+}
