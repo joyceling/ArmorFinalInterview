@@ -48,8 +48,25 @@ input.btn:hover, a.btn:hover {
 }
 
 h1 {
+    white-space: nowrap;
     font-size: 12em;
     color: #da7956;
     font-family: 'Roboto', sans-serif;
+}
 
+@media (max-width: 785px) {
+    h1 {
+        font-size: 5em;
+    }
+
+    input.btn, a.btn {
+        margin-top: 40px;
+    }
+
+}
+
+@media (max-width: 350px) {
+    h1 {
+        font-size: 4em;
+    }
 }
